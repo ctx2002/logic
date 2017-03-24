@@ -26,18 +26,18 @@ void truth_table(int number_of_variables)
 
 void from_f(int number_of_variables, char current_char, int index)
 {
-	int number = number_of_variables;
-	int local_index = index;
 	if (number_of_variables > 1) {
         path[index] = current_char;
-		--number;
-		++local_index;
-        from_f(number, bool_to_single_char(false) , local_index);
-        from_f(number, bool_to_single_char(true) , local_index);	    	 
+        from_f(number_of_variables-1, bool_to_single_char(false) , index+1);
+        from_f(number_of_variables-1, bool_to_single_char(true) ,  index+1);	    	 
 	} else {
-	    //push current char to path, print current char
-		path[local_index] = current_char;
-		path[++local_index] = '\0';
-		printf("%s\n",path);
+	    end_of_path(current_char,index);
 	}
+}
+
+void end_of_path(char current_char, int index)
+{
+    path[index] = current_char;
+	path[index + 1] = '\0';
+	printf("%s\n",path);
 }

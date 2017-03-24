@@ -8,4 +8,7 @@ char bool_to_single_char(bool value);
 void print_table(int number_of_variables);
 void truth_table(int number_of_variables);
 void from_f(int number_of_variables, char current_char, int index);
+void end_of_path(char current_char, int index);
+
+
 #endif
