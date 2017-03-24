@@ -17,6 +17,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include "logic.h"
+#include "truth_table.h"
 /****************************************************************************
  *                                                                          *
  * Function: main                                                           *
@@ -30,10 +31,12 @@
 
 int main(int argc, char *argv[])
 {
-    bool y;   
+    /*bool y;   
 	printf("Hello, world!\n");
 	y = imply(false, true);
-	printf("%s", y ? "true" : "false");
+	printf("%s", y ? "true" : "false");*/
+
+	print_table(7);
     return 0;
 }
 
