@@ -18,6 +18,7 @@
 #include <assert.h>
 #include "logic.h"
 #include "truth_table.h"
+#include "logic_check.h"
 /****************************************************************************
  *                                                                          *
  * Function: main                                                           *
@@ -36,7 +37,12 @@ int main(int argc, char *argv[])
 	y = imply(false, true);
 	printf("%s", y ? "true" : "false");*/
 
-	print_table(7);
+	//print_table(3);
+    bool p = true, q = false;
+	bool y = imply( imply(p, q) && p, q);
+    printf("%s", y ? "true" : "false");
+
+	two_variable_check();
     return 0;
 }
 

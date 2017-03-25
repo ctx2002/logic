@@ -31,7 +31,8 @@ WizCreator = Pelle Orinius#
 logic.exe: \
 	output\logic.obj \
 	output\main.obj \
-	output\truth_table.obj
+	output\truth_table.obj \
+	output\logic_check.obj
 	$(LINK) $(LINKFLAGS) -out:"$@" $**
 
 # 
@@ -40,6 +41,7 @@ logic.exe: \
 output\main.obj: \
 	main.c \
 	logic.h \
+	logic_check.h \
 	truth_table.h
 	$(CC) $(CCFLAGS) "$!" -Fo"$@"
 
@@ -57,6 +59,15 @@ output\logic.obj: \
 output\truth_table.obj: \
 	truth_table.c \
 	truth_table.h
+	$(CC) $(CCFLAGS) "$!" -Fo"$@"
+
+# 
+# Build logic_check.obj.
+# 
+output\logic_check.obj: \
+	logic_check.c \
+	logic.h \
+	logic_check.h
 	$(CC) $(CCFLAGS) "$!" -Fo"$@"
 
 .EXCLUDEDFILES:
