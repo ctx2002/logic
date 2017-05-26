@@ -16,10 +16,10 @@ AS = poasm.exe#
 RC = porc.exe#
 LINK = polink.exe#
 SIGN = posign.exe#
-CCFLAGS = -std:C11 -Tx64-coff -Ot -Ob1 -fp:precise -W2 -Gr#
-ASFLAGS = -AAMD64 -Gr#
+CCFLAGS = -std:C11 -Tx64-coff -Zi -Ot -Ob1 -fp:precise -W2 -Gr#
+ASFLAGS = -AAMD64 -Zi -Gr#
 RCFLAGS = #
-LINKFLAGS = -subsystem:console -machine:x64 -map#
+LINKFLAGS = -debug -debugtype:both -subsystem:console -machine:x64 -map#
 SIGNFLAGS = -timeurl:http://timestamp.verisign.com/scripts/timstamp.dll -location:CU -store:MY -errkill#
 INCLUDE = $(PellesCDir)\Include\Win;$(PellesCDir)\Include#
 LIB = $(PellesCDir)\Lib\Win64;$(PellesCDir)\Lib#
@@ -30,9 +30,9 @@ WizCreator = Pelle Orinius#
 # 
 logic.exe: \
 	output\logic.obj \
+	output\logic_check.obj \
 	output\main.obj \
-	output\truth_table.obj \
-	output\logic_check.obj
+	output\truth_table.obj
 	$(LINK) $(LINKFLAGS) -out:"$@" $**
 
 # 

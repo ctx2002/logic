@@ -1,7 +1,13 @@
 #include "logic_check.h"
 #include "logic.h"
 #include <stdio.h>
+#include <stdbool.h>
 
+/* this function check to see if a single variable logic function is a Tautology or not **/
+bool is_valid(one_variable func)
+{
+    return func(false) && func(true);
+}
 
 void two_variable_check(void)
 {

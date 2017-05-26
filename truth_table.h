@@ -1,7 +1,7 @@
 #ifndef TRUTH_TABLE_H
 #define TRUTH_TABLE_H
 
-#define MAX_PATH 5
+#define MAX_PATH 20
 char path[MAX_PATH + 1];
 
 char bool_to_single_char(bool value);

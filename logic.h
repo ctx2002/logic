@@ -14,4 +14,8 @@ bool axiom1(bool p, bool q);
 bool axiom2(bool p, bool q);
 bool axiom3(bool p, bool q);
 bool axiom4(bool p, bool q, bool r);
+
+bool pnotorp(bool value);
+
+void print_tautology(char *name,bool value);
 #endif

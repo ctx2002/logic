@@ -37,12 +37,17 @@ int main(int argc, char *argv[])
 	y = imply(false, true);
 	printf("%s", y ? "true" : "false");*/
 
-	//print_table(3);
+	print_table(19);
     bool p = true, q = false;
 	bool y = imply( imply(p, q) && p, q);
     printf("%s", y ? "true" : "false");
 
 	two_variable_check();
+    
+	/* this check to see if pnotorp is Tautology or not **/
+    bool valid = is_valid(pnotorp);
+
+	print_tautology("pnotorp", valid);
     return 0;
 }
 
