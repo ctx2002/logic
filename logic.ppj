@@ -8,7 +8,7 @@ POC_PROJECT_TYPE = 13#
 POC_PROJECT_OUTPUTDIR = output#
 POC_PROJECT_RESULTDIR = .#
 POC_PROJECT_ARGUMENTS = #
-POC_PROJECT_WORKPATH = #
+POC_PROJECT_WORKPATH = .#
 POC_PROJECT_EXECUTOR = #
 POC_PROJECT_ZIPEXTRA = #
 CC = pocc.exe#
@@ -16,10 +16,10 @@ AS = poasm.exe#
 RC = porc.exe#
 LINK = polink.exe#
 SIGN = posign.exe#
-CCFLAGS = -std:C11 -Tx64-coff -Ot -Ob1 -fp:precise -W2 -Gr#
-ASFLAGS = -AAMD64 -Gr#
+CCFLAGS = -std:C11 -Tx64-coff -Zi -Ot -Ob1 -fp:precise -W2 -Gr#
+ASFLAGS = -AAMD64 -Zi -Gr#
 RCFLAGS = #
-LINKFLAGS = -subsystem:console -machine:x64 -map#
+LINKFLAGS = -debug -debugtype:both -subsystem:console -machine:x64 -map#
 SIGNFLAGS = -timeurl:http://timestamp.verisign.com/scripts/timstamp.dll -location:CU -store:MY -errkill#
 INCLUDE = $(PellesCDir)\Include\Win;$(PellesCDir)\Include#
 LIB = $(PellesCDir)\Lib\Win64;$(PellesCDir)\Lib#
@@ -29,8 +29,10 @@ WizCreator = Pelle Orinius#
 # Build logic.exe.
 # 
 logic.exe: \
+	output\logic.obj \
+	output\logic_check.obj \
 	output\main.obj \
-	output\logic.obj
+	output\truth_table.obj
 	$(LINK) $(LINKFLAGS) -out:"$@" $**
 
 # 
@@ -38,7 +40,9 @@ logic.exe: \
 # 
 output\main.obj: \
 	main.c \
-	logic.h
+	logic.h \
+	logic_check.h \
+	truth_table.h
 	$(CC) $(CCFLAGS) "$!" -Fo"$@"
 
 # 
@@ -47,6 +51,23 @@ output\main.obj: \
 output\logic.obj: \
 	logic.c \
 	logic.h
+	$(CC) $(CCFLAGS) "$!" -Fo"$@"
+
+# 
+# Build truth_table.obj.
+# 
+output\truth_table.obj: \
+	truth_table.c \
+	truth_table.h
+	$(CC) $(CCFLAGS) "$!" -Fo"$@"
+
+# 
+# Build logic_check.obj.
+# 
+output\logic_check.obj: \
+	logic_check.c \
+	logic.h \
+	logic_check.h
 	$(CC) $(CCFLAGS) "$!" -Fo"$@"
 
 .EXCLUDEDFILES:
